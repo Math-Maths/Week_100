@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] float speed = 3f;
     [SerializeField] float gravityForce = 0.3f;
-    [SerializeField] float impulseForce = 1000f;
+    [SerializeField] float maximumSpeed, breakPower;
 
     Vector2 characterScale;
     Quaternion defaultRotation;
@@ -21,6 +21,23 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate ()
     {
         Move();
+        SetMaxVelocity();
+    }
+
+    private void SetMaxVelocity()
+    {
+        float speed = Vector3.Magnitude(myRigidbody.velocity); 
+
+        if (speed > maximumSpeed)
+
+        {
+            float brakeSpeed = speed - maximumSpeed;  
+
+            Vector3 normalisedVelocity = myRigidbody.velocity.normalized;
+            Vector3 brakeVelocity = normalisedVelocity * brakeSpeed * breakPower;  
+
+            myRigidbody.AddForce(-brakeVelocity);  
+        }
     }
 
     private void Move()
@@ -28,44 +45,21 @@ public class PlayerController : MonoBehaviour {
         Vector2 dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         Vector2 movement = dir * speed * Time.deltaTime;
         myRigidbody.AddForce(movement);
-
         transform.rotation = defaultRotation;
-
         Flip(movement);
     }
 
     void Flip(Vector2 movement)//Flip the object sprite
     {
-        if (movement.x < 0)
+        if (movement.x < 0.01f)
         {
             transform.localScale = new Vector2(characterScale.x * -1, transform.localScale.y);
         }
-        else if (movement.x > 0)
+        else if (movement.x > 0.01f)
         {
             transform.localScale = new Vector2(characterScale.x, transform.localScale.y);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if(collider.tag == "Water")
-        {
-            print("In the water");
-            myRigidbody.gravityScale = 0.02f;
-        }
-        else if(collider.tag == "Sky")
-        {
-            print("No ar");
-            myRigidbody.gravityScale = 1f;
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Wall")
-        {
-            Vector2 impulseDir = myRigidbody.velocity.normalized;
-            myRigidbody.AddForce(impulseDir * impulseForce * -1, ForceMode2D.Impulse);
-        }
-    }
+    
 }
