@@ -27,13 +27,16 @@ public class PlayerCollisionAndStats : MonoBehaviour {
 
     void Update()
     {
-        if(transform.position.y > 6)
+        if (playerController.enabled)
         {
-            myRigidbody.gravityScale = 1;
-        }
-        else
-        {
-            myRigidbody.gravityScale = 0.01f;
+            if (transform.position.y > 6)
+            {
+                myRigidbody.gravityScale = 1;
+            }
+            else
+            {
+                myRigidbody.gravityScale = 0.01f;
+            }
         }
     }
 
@@ -90,4 +93,12 @@ public class PlayerCollisionAndStats : MonoBehaviour {
         playerSprite.enabled = true;
         i = 0;
     }
+
+    public void OnPlayerDeath()
+    {
+        myRigidbody.gravityScale = 0.5f;
+        invunerable = true;
+        playerController.enabled = false;
+    }
+
 }

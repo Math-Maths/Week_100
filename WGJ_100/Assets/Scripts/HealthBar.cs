@@ -5,9 +5,11 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour {
 
     Transform bar;
+    SceneController sceneManager;
 
 	void Start () {
         bar = transform.Find("Bar");
+        sceneManager = FindObjectOfType<SceneController>();
 	}
 	
 	public void SetBarSize(float barNewSize)
@@ -19,6 +21,7 @@ public class HealthBar : MonoBehaviour {
         else if(barNewSize <= 0)
         {
             bar.localScale = new Vector3(0, 1f, 1f);
+            sceneManager.OnPlayerDeath();
         }
     }
 }

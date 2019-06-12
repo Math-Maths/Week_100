@@ -8,11 +8,16 @@ public class CameraFollow : MonoBehaviour {
     [SerializeField] float smoothSpeed = 10f;
 
     [SerializeField] Vector3 offSet;
-	
-	void FixedUpdate () {
 
-        Vector3 desiredPosition = target.position + offSet;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
-        transform.position = smoothedPosition;
+    public bool playerAlive;
+
+
+	void FixedUpdate () {
+        if (playerAlive)
+        {
+            Vector3 desiredPosition = target.position + offSet;
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+            transform.position = smoothedPosition;
+        }
 	}
 }
