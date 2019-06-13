@@ -29,7 +29,7 @@ public class PlayerCollisionAndStats : MonoBehaviour {
     {
         if (playerController.enabled)
         {
-            if (transform.position.y > 6)
+            if (transform.position.y > 0.7)
             {
                 myRigidbody.gravityScale = 1;
             }

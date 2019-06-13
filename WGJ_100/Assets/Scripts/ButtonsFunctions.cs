@@ -5,19 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsFunctions : MonoBehaviour {
 
-    [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject healthBar, pauseButton, metersObj;
     SceneController sceneManager;
 
     void Start()
     {
         sceneManager = GetComponent<SceneController>();
         healthBar.SetActive(false);
+        pauseButton.SetActive(false);
+        metersObj.SetActive(false);
     }
 
 	public void PlayGame()
     {
         sceneManager.StartTheGame();
         healthBar.SetActive(true);
+        pauseButton.SetActive(true);
+        metersObj.SetActive(true);
     }
 
     public void QuitGame()

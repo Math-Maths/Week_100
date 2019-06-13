@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     [SerializeField] float speed = 3f;
-    [SerializeField] float gravityForce = 0.3f;
     [SerializeField] float maximumSpeed, breakPower;
 
     Vector2 characterScale;
