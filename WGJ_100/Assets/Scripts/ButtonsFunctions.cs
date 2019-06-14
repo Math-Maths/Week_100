@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonsFunctions : MonoBehaviour {
 
     [SerializeField] GameObject healthBar, pauseButton, metersObj;
+    [SerializeField] RectTransform mainMenu;
     SceneController sceneManager;
 
     void Start()
@@ -44,4 +45,10 @@ public class ButtonsFunctions : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
     }
+
+    public void InvokeReloadScene()
+    {
+        Invoke("ReloadScene", 2.5f);
+    }
+
 }

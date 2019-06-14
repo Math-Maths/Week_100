@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour {
     PlayerCollisionAndStats playerCollisionAndStats;
     CameraFollow cameraFollow;
     [SerializeField] Oscilatior playerOscilator;
+
 	
     void Awake()
     {
@@ -18,19 +19,10 @@ public class SceneController : MonoBehaviour {
         playerController.enabled = false;
     }
 
-	void Start () {
-        
-	}
-	
-	
-	void Update () {
-        
-	}
-
     public void OnPlayerDeath()
     {
         playerCollisionAndStats.OnPlayerDeath();
-        cameraFollow.playerAlive = false;
+        cameraFollow.playerAlive = false;    
     }
 
     public void StartTheGame()

@@ -31,7 +31,7 @@ public class PlayerCollisionAndStats : MonoBehaviour {
         {
             if (transform.position.y > 0.7)
             {
-                myRigidbody.gravityScale = 1;
+                myRigidbody.gravityScale = 2.5f;
             }
             else
             {

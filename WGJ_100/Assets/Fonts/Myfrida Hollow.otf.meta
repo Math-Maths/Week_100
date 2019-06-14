@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 4d4569fc173d73648a272a54a1243010
+timeCreated: 1560452550
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Myfrida Hollow
+  fontNames:
+  - Myfrida Hollow
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0bf78fd6206520145bad2aaa614ec5c2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

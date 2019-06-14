@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 53d83cb12ca51c44296f3677d4255fbb
+timeCreated: 1560452550
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Myfrida Shadow
+  fontNames:
+  - Myfrida Shadow
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 35c7f873fd409eb4b81805cf7a1bd24e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

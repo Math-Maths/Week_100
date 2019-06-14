@@ -6,10 +6,12 @@ public class HealthBar : MonoBehaviour {
 
     Transform bar;
     SceneController sceneManager;
+    ButtonsFunctions buttonsFunctions;
 
 	void Start () {
         bar = transform.Find("Bar");
         sceneManager = FindObjectOfType<SceneController>();
+        buttonsFunctions = FindObjectOfType<ButtonsFunctions>();
 	}
 	
 	public void SetBarSize(float barNewSize)
@@ -22,6 +24,7 @@ public class HealthBar : MonoBehaviour {
         {
             bar.localScale = new Vector3(0, 1f, 1f);
             sceneManager.OnPlayerDeath();
+            buttonsFunctions.InvokeReloadScene();
         }
     }
 }

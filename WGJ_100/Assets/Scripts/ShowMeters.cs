@@ -14,7 +14,7 @@ public class ShowMeters : MonoBehaviour {
 	}
 
 	void Update () {
-        meterNum = (playerDepth.position.y * -1)/10;
+        meterNum = (playerDepth.position.y * -1)/1.8f;
         metersText.text = meterNum.ToString("0") + " m";
 	}
 }

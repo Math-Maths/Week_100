@@ -7,14 +7,12 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float speed = 3f;
     [SerializeField] float maximumSpeed, breakPower;
 
-    Vector2 characterScale;
-    Quaternion defaultRotation;
+    float YRotation;
     Rigidbody2D myRigidbody;
 
     void Start () {
-        characterScale = transform.localScale;
-        defaultRotation = transform.rotation;
         myRigidbody = GetComponent<Rigidbody2D>();
+        YRotation = 0;
     }
 
 	void FixedUpdate ()
@@ -44,19 +42,25 @@ public class PlayerController : MonoBehaviour {
         Vector2 dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         Vector2 movement = dir * speed * Time.deltaTime;
         myRigidbody.AddForce(movement);
-        transform.rotation = defaultRotation;
+        //transform.rotation = defaultRotation;
         Flip(movement);
     }
 
     void Flip(Vector2 movement)//Flip the object sprite
     {
-        if (movement.x < 0.01f)
+        if (movement.x < 0)
         {
-            transform.localScale = new Vector2(characterScale.x * -1, transform.localScale.y);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, Input.GetAxis("Vertical") * 30));
+            YRotation = 180;
         }
-        else if (movement.x > 0.01f)
+        else if (movement.x > 0)
         {
-            transform.localScale = new Vector2(characterScale.x, transform.localScale.y);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, Input.GetAxis("Vertical") * 30));
+            YRotation = 0;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, YRotation, Input.GetAxis("Vertical") * 30));
         }
     }
 
