@@ -23,12 +23,12 @@ public class PlayerController : MonoBehaviour {
 
     private void SetMaxVelocity()
     {
-        float speed = Vector3.Magnitude(myRigidbody.velocity); 
+        float currentSpeed = Vector3.Magnitude(myRigidbody.velocity); 
 
-        if (speed > maximumSpeed)
+        if (currentSpeed > maximumSpeed)
 
         {
-            float brakeSpeed = speed - maximumSpeed;  
+            float brakeSpeed = currentSpeed - maximumSpeed;  
 
             Vector3 normalisedVelocity = myRigidbody.velocity.normalized;
             Vector3 brakeVelocity = normalisedVelocity * brakeSpeed * breakPower;  
@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour {
         Vector2 dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         Vector2 movement = dir * speed * Time.deltaTime;
         myRigidbody.AddForce(movement);
-        //transform.rotation = defaultRotation;
         Flip(movement);
     }
 

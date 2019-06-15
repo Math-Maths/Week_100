@@ -7,6 +7,7 @@ public class ButtonsFunctions : MonoBehaviour {
 
     [SerializeField] GameObject healthBar, pauseButton, metersObj;
     [SerializeField] RectTransform mainMenu;
+    [SerializeField] Animator camAnimator, mainMenuAnimator;
     SceneController sceneManager;
 
     void Start()
@@ -19,6 +20,8 @@ public class ButtonsFunctions : MonoBehaviour {
 
 	public void PlayGame()
     {
+        camAnimator.enabled = false;
+        mainMenuAnimator.enabled = false;
         sceneManager.StartTheGame();
         healthBar.SetActive(true);
         pauseButton.SetActive(true);
