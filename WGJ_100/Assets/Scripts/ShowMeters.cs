@@ -11,10 +11,12 @@ public class ShowMeters : MonoBehaviour {
 
 	void Start () {
         metersText = GetComponent<Text>();
+        metersText.text = "0 m";
 	}
 
 	void Update () {
         meterNum = (playerDepth.position.y * -1)/1.8f;
+        if(meterNum >=0 && meterNum <= 100)
         metersText.text = meterNum.ToString("0") + " m";
 	}
 }

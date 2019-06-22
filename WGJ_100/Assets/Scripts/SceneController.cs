@@ -8,15 +8,27 @@ public class SceneController : MonoBehaviour {
     PlayerCollisionAndStats playerCollisionAndStats;
     CameraFollow cameraFollow;
     [SerializeField] Oscilatior playerOscilator;
+    [SerializeField] Rigidbody2D playerRigidbody;
+    [SerializeField] GameObject MainMenu;
+    GameSaver game;
 
 	
     void Awake()
     {
+        game = FindObjectOfType<GameSaver>();
         playerController = FindObjectOfType<PlayerController>();
         playerCollisionAndStats = FindObjectOfType<PlayerCollisionAndStats>();
         cameraFollow = FindObjectOfType<CameraFollow>();
-        cameraFollow.playerAlive = false;
-        playerController.enabled = false;
+        if (game.isReturning)
+        {
+            StartTheGame();
+        }
+        else
+        {
+            cameraFollow.playerAlive = false;
+            playerController.enabled = false;
+            playerRigidbody.gravityScale = 0;
+        }
     }
 
     public void OnPlayerDeath()
@@ -27,6 +39,7 @@ public class SceneController : MonoBehaviour {
 
     public void StartTheGame()
     {
+        MainMenu.SetActive(false);
         playerOscilator.enabled = false;
         cameraFollow.playerAlive = true;
         playerController.enabled = true;

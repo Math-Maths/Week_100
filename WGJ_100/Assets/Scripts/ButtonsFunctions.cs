@@ -6,22 +6,30 @@ using UnityEngine.SceneManagement;
 public class ButtonsFunctions : MonoBehaviour {
 
     [SerializeField] GameObject healthBar, pauseButton, metersObj;
-    [SerializeField] RectTransform mainMenu;
-    [SerializeField] Animator camAnimator, mainMenuAnimator;
+    //[SerializeField] RectTransform mainMenu;
+    //[SerializeField] Animator camAnimator, mainMenuAnimator;
     SceneController sceneManager;
+    GameSaver gameSaver;
 
     void Start()
     {
+        gameSaver = FindObjectOfType<GameSaver>();
         sceneManager = GetComponent<SceneController>();
-        healthBar.SetActive(false);
-        pauseButton.SetActive(false);
-        metersObj.SetActive(false);
+        if (gameSaver.isReturning) {
+            PlayGame();
+        }
+        else
+        {
+            healthBar.SetActive(false);
+            pauseButton.SetActive(false);
+            metersObj.SetActive(false);
+        }
     }
 
 	public void PlayGame()
     {
-        camAnimator.enabled = false;
-        mainMenuAnimator.enabled = false;
+        //camAnimator.enabled = false;
+        //mainMenuAnimator.enabled = false;
         sceneManager.StartTheGame();
         healthBar.SetActive(true);
         pauseButton.SetActive(true);
@@ -45,6 +53,7 @@ public class ButtonsFunctions : MonoBehaviour {
 
     public void ReloadScene()
     {
+        gameSaver.isReturning = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
     }
@@ -54,4 +63,10 @@ public class ButtonsFunctions : MonoBehaviour {
         Invoke("ReloadScene", 2.5f);
     }
 
+    public void Return()
+    {
+        gameSaver.isReturning = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+    }
 }

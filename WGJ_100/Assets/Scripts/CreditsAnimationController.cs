@@ -8,9 +8,7 @@ public class CreditsAnimationController : MonoBehaviour {
 
     void Start()
     {
-        camAnimator.SetBool("Playing", false);
-        mainMenuAnimator.SetBool("Playing", false);
-        camAnimator.SetBool("goingToMenu", false);
+        camAnimator.SetBool("goingToMainMenu", false);
         mainMenuAnimator.SetBool("goingToMainMenu", false);
         camAnimator.SetBool("goingToCredits", false);
         mainMenuAnimator.SetBool("goingToCredits", false);
@@ -18,7 +16,7 @@ public class CreditsAnimationController : MonoBehaviour {
 
 	public void GoToCredits()
     {
-        camAnimator.SetBool("goingToMenu", false);
+        camAnimator.SetBool("goingToMainMenu", false);
         mainMenuAnimator.SetBool("goingToMainMenu", false);
         camAnimator.SetBool("goingToCredits", true);
         mainMenuAnimator.SetBool("goingToCredits", true);
@@ -28,7 +26,7 @@ public class CreditsAnimationController : MonoBehaviour {
     {
         camAnimator.SetBool("goingToCredits", false);
         mainMenuAnimator.SetBool("goingToCredits", false);
-        camAnimator.SetBool("goingToMenu", true);
+        camAnimator.SetBool("goingToMainMenu", true);
         mainMenuAnimator.SetBool("goingToMainMenu", true);       
     }
 }

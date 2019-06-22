@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (playerAlive && target.position.y <= -5)
+        if (playerAlive)
         {
             smoothSpeed = 5;
             Vector3 desiredPosition = target.position + offSet;
