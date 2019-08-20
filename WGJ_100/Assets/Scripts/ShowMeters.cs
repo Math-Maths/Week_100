@@ -6,7 +6,16 @@ using UnityEngine.UI;
 public class ShowMeters : MonoBehaviour {
 
     [SerializeField] Transform playerDepth;
-    float meterNum;
+
+    public float meterNum
+    {
+        get
+        {
+            return _meterNum;
+        }
+    }
+
+    float _meterNum;
     Text metersText;
 
 	void Start () {
@@ -15,7 +24,7 @@ public class ShowMeters : MonoBehaviour {
 	}
 
 	void Update () {
-        meterNum = (playerDepth.position.y * -1)/1.8f;
+        _meterNum = (playerDepth.position.y * -1)/1.8f;
         if(meterNum >=0 && meterNum <= 100)
         metersText.text = meterNum.ToString("0") + " m";
 	}

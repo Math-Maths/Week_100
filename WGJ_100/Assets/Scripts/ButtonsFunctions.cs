@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class ButtonsFunctions : MonoBehaviour {
 
     [SerializeField] GameObject healthBar, pauseButton, metersObj;
-    //[SerializeField] RectTransform mainMenu;
-    //[SerializeField] Animator camAnimator, mainMenuAnimator;
+    [SerializeField] Animator camAnimator, mainMenuAnimator;
+    AudioListener audioListener;
     SceneController sceneManager;
     GameSaver gameSaver;
 
     void Start()
     {
+        audioListener = FindObjectOfType<AudioListener>();
         gameSaver = FindObjectOfType<GameSaver>();
         sceneManager = GetComponent<SceneController>();
         if (gameSaver.isReturning) {
@@ -28,8 +29,8 @@ public class ButtonsFunctions : MonoBehaviour {
 
 	public void PlayGame()
     {
-        //camAnimator.enabled = false;
-        //mainMenuAnimator.enabled = false;
+        camAnimator.enabled = false;
+        mainMenuAnimator.enabled = false;
         sceneManager.StartTheGame();
         healthBar.SetActive(true);
         pauseButton.SetActive(true);
@@ -44,16 +45,19 @@ public class ButtonsFunctions : MonoBehaviour {
     public void Pause()
     {
         Time.timeScale = 0;
+        audioListener.enabled = false;
     }
 
     public void Resume()
     {
         Time.timeScale = 1;
+        audioListener.enabled = true;
     }
 
     public void ReloadScene()
     {
         gameSaver.isReturning = false;
+        audioListener.enabled = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
     }
@@ -66,6 +70,7 @@ public class ButtonsFunctions : MonoBehaviour {
     public void Return()
     {
         gameSaver.isReturning = true;
+        audioListener.enabled = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
     }

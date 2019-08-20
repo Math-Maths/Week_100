@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         Vector2 movement = dir * speed * Time.deltaTime;
         myRigidbody.AddForce(movement);
         Flip(movement);
+
     }
 
     void Flip(Vector2 movement)//Flip the object sprite
@@ -62,6 +63,5 @@ public class PlayerController : MonoBehaviour {
             transform.rotation = Quaternion.Euler(new Vector3(0, YRotation, Input.GetAxis("Vertical") * 30));
         }
     }
-
     
 }

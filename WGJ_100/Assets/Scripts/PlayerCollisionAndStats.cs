@@ -14,12 +14,14 @@ public class PlayerCollisionAndStats : MonoBehaviour {
     PlayerController playerController;
     Rigidbody2D myRigidbody;
     SpriteRenderer playerSprite;
+    PlayerSoundController playerSound;
 
     IEnumerator EnuSetSprite;
 
 	void Start () {
         invunerable = false;
         EnuSetSprite = SetSpriteRender();
+        playerSound = GetComponent<PlayerSoundController>();
         myRigidbody = GetComponent<Rigidbody2D>();
         playerController = GetComponent<PlayerController>();
         playerSprite = GetComponent<SpriteRenderer>();
@@ -38,6 +40,11 @@ public class PlayerCollisionAndStats : MonoBehaviour {
                 myRigidbody.gravityScale = 0.01f;
             }
         }
+
+        if(health <= 0)
+        {
+            playerSound.DeathFXPlay();         
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -50,7 +57,7 @@ public class PlayerCollisionAndStats : MonoBehaviour {
                     CollisionSequence(.1f);
                     break;
                 case "Mine":
-                    CollisionSequence(.45f);
+                    CollisionSequence(.45f);                  
                     break;
             }
         }
@@ -60,6 +67,7 @@ public class PlayerCollisionAndStats : MonoBehaviour {
     private void CollisionSequence(float healthChange)
     {
         invunerable = true;
+        playerSound.PlayCrashFX();
         StartCoroutine(EnuSetSprite);
         Vector2 impulseDir = myRigidbody.velocity.normalized;
         myRigidbody.AddForce(impulseDir * impulseForce * -1, ForceMode2D.Impulse);
